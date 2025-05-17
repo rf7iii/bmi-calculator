@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      box-sizing: border-box;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 18px;
+      text-align: center;
+      color: #333;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>BMI Calculator</h1>
+    <label for="weight">Weight (kg):</label>
+    <input type="number" id="weight" placeholder="Enter your weight" />
+
+    <label for="height">Height (cm):</label>
+    <input type="number" id="height" placeholder="Enter your height" />
+
+    <button onclick="calculateBMI()">Calculate BMI</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <div class="footer">
+    <strong>BMI Calculator Project</strong><br>
+    Computing, Creative Design and Innovation<br>
+    By:
+    Osama Yasser<br>
+    Mohammed Ahmed<br>
+    Abdulmajid Anas<br>
+    Hazem Mahmoud<br>
+      Supervised by:Mahmoud Ahmed
+  </div>
+
+  <script>
+    function calculateBMI() {
+      const weight = parseFloat(document.getElementById('weight').value);
+      const height = parseFloat(document.getElementById('height').value);
+
+      const result = document.getElementById('result');
+
+      if (!weight || !height || weight <= 0 || height <= 0) {
+        result.textContent = 'Please enter valid values for weight and height.';
+        result.style.color = 'red';
+        return;
+      }
+
+      const heightInMeters = height / 100;
+      const bmi = weight / (heightInMeters * heightInMeters);
+      const roundedBMI = bmi.toFixed(2);
+
+      let category = '';
+      if (bmi < 18.5) {
+        category = 'Underweight';
+      } else if (bmi < 24.9) {
+        category = 'Normal weight';
+      } else if (bmi < 29.9) {
+        category = 'Overweight';
+      } else {
+        category = 'Obesity';
+      }
+
+      result.textContent = `Your BMI is ${roundedBMI} (${category})`;
+      result.style.color = '#333';
+    }
+  </script>
+</body>
+</html>
